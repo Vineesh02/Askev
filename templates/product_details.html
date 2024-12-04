@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Product Details</h1>
+        <form action="/product-details/{{ company_id }}" method="POST">
+            
+            <div id="product-fields">
+                <div class="product-entry">
+                    <label for="product_name">Product Name:</label>
+                    <input type="text" name="product_name[]" required>
+
+                    <label for="product_description">Product Description:</label>
+                    <textarea name="product_description[]" required></textarea>
+
+                    <label for="product_price">Product Price:</label>
+                    <input type="text" name="product_price[]" required>
+
+                    <h3>Custom Fields</h3>
+                    <div class="custom-fields">
+                        <div class="custom-field">
+                            <input type="text" name="custom_field_name[][]" placeholder="Field Name" required>
+                            <input type="text" name="custom_field_value[][]" placeholder="Field Value" required>
+                        </div>
+                    </div>
+                    <button type="button" class="add-custom-field">+ Add Custom Field</button>
+                </div>
+            </div>
+
+            <button type="button" id="add-product">+ Add Another Product</button>
+            <button type="submit">Submit All</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('add-product').onclick = function() {
+            var productFieldsDiv = document.getElementById('product-fields');
+            var newProduct = document.createElement('div');
+            newProduct.classList.add('product-entry');
+            newProduct.innerHTML = `
+                <label for="product_name">Product Name:</label>
+                <input type="text" name="product_name[]" required>
+
+                <label for="product_description">Product Description:</label>
+                <textarea name="product_description[]" required></textarea>
+
+                <label for="product_price">Product Price:</label>
+                <input type="text" name="product_price[]" required>
+
+                <h3>Custom Fields</h3>
+                <div class="custom-fields">
+                    <div class="custom-field">
+                        <input type="text" name="custom_field_name[][]" placeholder="Field Name" required>
+                        <input type="text" name="custom_field_value[][]" placeholder="Field Value" required>
+                    </div>
+                </div>
+                <button type="button" class="add-custom-field">+ Add Custom Field</button>
+            `;
+            productFieldsDiv.appendChild(newProduct);
+        };
+
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('add-custom-field')) {
+                var customFieldsDiv = e.target.closest('.product-entry').querySelector('.custom-fields');
+                var newCustomField = document.createElement('div');
+                newCustomField.classList.add('custom-field');
+                newCustomField.innerHTML = `
+                    <input type="text" name="custom_field_name[][]" placeholder="Field Name" required>
+                    <input type="text" name="custom_field_value[][]" placeholder="Field Value" required>
+                `;
+                customFieldsDiv.appendChild(newCustomField);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -8,93 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Company Details</h1>
-        <form action="/company-details" method="POST" enctype="multipart/form-data">
-            <h2>Company Information</h2>
+        <h1>Enter Company Details</h1>
+        <form action="/" method="POST">
             <label for="company_name">Company Name:</label>
             <input type="text" id="company_name" name="company_name" required>
 
             <label for="company_description">Company Description:</label>
             <textarea id="company_description" name="company_description" required></textarea>
 
-            <label for="product_file">Upload Product Information (CSV):</label>
-            <input type="file" id="product_file" name="product_file">
-
-            <h2>Product Information</h2>
-            <div id="product-details">
-                <div class="product-item">
-                    <label for="product_name">Product Name:</label>
-                    <input type="text" name="product_name[]" required>
-
-                    <label for="product_description">Product Description:</label>
-                    <textarea name="product_description[]" required></textarea>
-
-                    <label for="product_image">Product Image:</label>
-                    <input type="file" name="product_image[]" required>
-
-                    <label for="product_price">Product Price:</label>
-                    <input type="text" name="product_price[]" required>
-                    <button type="button" class="add-custom-field">+ Add Custom Field</button>
-                    <!-- Custom fields button -->
-                    
-                    <div class="custom-fields"></div> <!-- Container for custom fields -->
-                </div>
-            </div>
-            <div class="buttons">
-                
-                <button type="button" id="add-product">+ Add Product</button>
-                <br>
-                <button type="submit">Submit</button>
-            </div>
+            <button type="submit">Submit</button>
         </form>
     </div>
-
-    <script>
-        document.getElementById("add-product").onclick = function() {
-            var productDetails = document.getElementById("product-details");
-            var newProduct = document.createElement("div");
-            newProduct.classList.add("product-item");
-
-            newProduct.innerHTML = `
-                <label for="product_name">Product Name:</label>
-                <input type="text" name="product_name[]" required>
-
-                <label for="product_description">Product Description:</label>
-                <textarea name="product_description[]" required></textarea>
-
-                <label for="product_image">Product Image:</label>
-                <input type="file" name="product_image[]" required>
-
-                <label for="product_price">Product Price:</label>
-                <input type="text" name="product_price[]" required>
-
-                <!-- Custom fields button -->
-                <button type="button" class="add-custom-field">+ Add Custom Field</button>
-                <div class="custom-fields"></div> <!-- Container for custom fields -->
-            `;
-
-            productDetails.appendChild(newProduct);
-        };
-
-        // Event listener for dynamically added "Add Custom Field" buttons
-        document.addEventListener("click", function(event) {
-            if (event.target && event.target.classList.contains("add-custom-field")) {
-                var customFieldsDiv = event.target.nextElementSibling;
-
-                var customField = document.createElement("div");
-                customField.classList.add("custom-field-item");
-
-                customField.innerHTML = `
-                    <label for="custom_field_name">Custom Field Name:</label>
-                    <input type="text" name="custom_field_name[]" required>
-
-                    <label for="custom_field_value">Custom Field Value:</label>
-                    <input type="text" name="custom_field_value[]" required>
-                `;
-
-                customFieldsDiv.appendChild(customField);
-            }
-        });
-    </script>
 </body>
 </html>
