@@ -8,33 +8,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>Enter Product Details</h1>
+        <h1>Enter Product Details/Services Provide</h1>
         <form action="/product-details/{{ company_id }}" method="POST">
             
             <div id="product-fields">
                 <div class="product-entry">
-                    <label for="product_name">Product Name:</label>
+                    <label for="product_name">Name:</label>
                     <input type="text" name="product_name[]" required>
 
-                    <label for="product_description">Product Description:</label>
+                    <label for="product_description">Description:</label>
                     <textarea name="product_description[]" required></textarea>
 
-                    <label for="product_price">Product Price:</label>
+                    <label for="product_price">Price:</label>
                     <input type="text" name="product_price[]" required>
 
                     <h3>Custom Fields</h3>
                     <div class="custom-fields">
-                        <div class="custom-field">
-                            <input type="text" name="custom_field_name[][]" placeholder="Field Name" required>
-                            <input type="text" name="custom_field_value[][]" placeholder="Field Value" required>
-                        </div>
                     </div>
                     <button type="button" class="add-custom-field">+ Add Custom Field</button>
                 </div>
             </div>
-
-            <button type="button" id="add-product">+ Add Another Product</button>
-            <button type="submit">Submit All</button>
+            <h3>Add Another Product/Services</h3>
+            <button type="button" id="add-product">+ Add Another</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
 
